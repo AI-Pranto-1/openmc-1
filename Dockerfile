@@ -7,11 +7,8 @@
 # To build with OpenMC and DAGMC enabled
 # docker build -t openmc_dagmc --build-arg build_dagmc=on --build-arg compile_cores=4 .
 
-# To build with OpenMC and Libmesh enabled
+# To build with OpenMC and Libmesh support
 # docker build -t openmc_libmesh --build-arg build_libmesh=on --build-arg compile_cores=4 .
-
-# To build with both DAGMC and Libmesh enabled
-# docker build -t openmc_dagmc_libmesh --build-arg build_dagmc=on --build-arg build_libmesh=on --build-arg compile_cores=4 .
 
 # sudo docker run image_name:tag_name or ID with no tag sudo docker run ID number
 
@@ -22,7 +19,7 @@ ARG build_dagmc=off
 ARG build_libmesh=off
 
 # By default one core is used to compile
-ARG compile_cores=1
+ARG compile_cores=4
 
 # Set default value of HOME to /root
 ENV HOME=/root
