@@ -1,16 +1,13 @@
-name: dockerhub-publish-release
+name: dockerhub-publish-latest-dagmc-libmesh
 
 on:
   push:
-    tags: 'v*.*.*'
+    branches: master
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -29,8 +26,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: openmc/openmc:${{ env.RELEASE_VERSION }}
+          tags: openmc/openmc:latest-libmesh
           build-args: |
+            build_dagmc=on
+            build_libmesh=on
             compile_cores=2
       -
         name: Image digest
